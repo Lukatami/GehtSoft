@@ -21,12 +21,27 @@ public class CustomListTest {
     }
 
     @Test
+    public void testAddReturnsTrue() {
+        CustomList<String> list = new CustomList<>();
+        assertTrue(list.add("Test"), "Метод add должен возвращать true");
+    }
+
+    @Test
     public void testMultipleAddInt () {
         CustomList<Integer> list = new CustomList<>();
         for (int i = 0; i < 100; i++) {
             list.add(i);
         }
         assertEquals(100, list.size(),"Список содержит 100 элементов");
+    }
+
+    @Test
+    public void testAddIndex () {
+        CustomList<String> list = new CustomList<>();
+        list.add("Test");
+        list.add("Test1");
+        list.add(1,"Test2");
+        assertEquals("[Test, Test2, Test1]", list.toString(), "Вставка по индексу корректна");
     }
 
     @Test
@@ -38,6 +53,7 @@ public class CustomListTest {
         assertEquals("Test", list.get(0), "Запрашиваемый индекс элемента имеет значение Test");
         assertEquals("Test2", list.get(2), "Запрашиваемый индекс элемента имеет значение Test2");
     }
+
     @Test
     public void testGetOutOfBounds () {
         CustomList<String> list = new CustomList<>();
